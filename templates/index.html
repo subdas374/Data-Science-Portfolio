@@ -10,18 +10,19 @@
   <!-- Disable tap highlight on IE -->
   <!-- <meta name="msapplication-tap-highlight" content="no"> -->
 
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
-  <link href="./assets/favicon.ico" rel="icon">
+  <!-- <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
+  <link href="../static/favicon.ico" rel="icon"> -->
 
   <title>Title page</title>
 
-  <link href="./main.css" rel="stylesheet">
+  <link href="../static/main.css" rel="stylesheet">
+
 </head>
 
 <body class="">
 
   <!-- Add your content of header -->
-  <div class="background-color-layer" style="background-image: url('assets/images/skyscraper.jpeg')"></div>
+  <div class="background-color-layer" style="background-image: url('../static/images/skyscraper.jpeg')"></div>
   <main class="content-wrapper">
     <header class="white-text-container section-container">
       <div class="text-center">
@@ -42,6 +43,9 @@
 
 
 
+
+
+
     <!-- Add your site or app content here -->
 
     <div class="container">
@@ -53,10 +57,12 @@
               <h2>About me</h2>
               <div class="row">
                 <div class="col-md-4">
-                  <p><img src="./assets/images/profile-image.jpg" class="img-responsive" alt=""></p>
+                  <p><img src="../static/images/profile-image.jpg" class="img-responsive" alt=""></p>
 
-                  <a href="https://github.com/subdas374"><button type="button" class="btn btn-secondary">GitHub</button></a>
-                  <a href="./assets/Subrata_resume.pdf" download="Your_Resume.pdf"><button type="button" class="btn btn-primary">Resume</button></a>
+                  <a href="https://github.com/subdas374" target="_blank"><button type="button"
+                      class="btn btn-secondary">GitHub</button></a>
+                  <a href="../static/Subrata_resume.pdf" download="SubrataDas-resume.pdf"><button type="button"
+                      class="btn btn-primary">Resume</button></a>
                 </div>
                 <div class="col-md-8">
 
@@ -104,7 +110,7 @@
                   </a>
                   <p>March 2017</p>
                 </div>
-                
+
 
               </div>
             </div>
@@ -156,7 +162,7 @@
                     <p>Chandigarh University</p>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -211,15 +217,19 @@
       <div class="card">
         <div class="card-block">
           <h2>Contact</h2>
-          <form action="" class="reveal-content">
+          <form method="POST" action="/contact" class="reveal-content" id="contact-form">
             <div class="form-group">
-              <input type="email" class="form-control" id="email" placeholder="Email">
+              <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" id="subject" placeholder="Subject">
+              <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
             </div>
             <div class="form-group">
-              <textarea class="form-control" rows="5" placeholder="Enter your message"></textarea>
+              <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject" required>
+            </div>
+            <div class="form-group">
+              <textarea name="message" class="form-control" rows="5" placeholder="Enter your message"
+                required></textarea>
             </div>
             <div class="form-group">
               <button type="submit" class=" btn btn-primary">Send message</button>
@@ -232,7 +242,19 @@
     </div>
     </div>
 
+
+
   </main>
+
+  <!-- Thank you pop-up message -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <span class="close" id="close-popup" onclick="closePopup()">&times;</span>
+      <p>Thank you for contacting me! You will hear from me soon.</p>
+    </div>
+  </div>
+
+
   <footer class="footer-container white-text-container text-center">
     <div class="container">
       <div class="row">
@@ -263,6 +285,34 @@
     var typed = new Typed('#element', {
       strings: ['Data Analyst', 'and i love Python'],
       typeSpeed: 50,
+    });
+  </script>
+
+
+  <!-- Add this JavaScript code to display the pop-up message after redirect -->
+  <!-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Check if the URL contains a success parameter (you can modify this logic based on your Flask redirection)
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("success")) {
+        const popup = document.getElementById("popup");
+        popup.style.display = "block";
+      }
+    });
+  </script> -->
+
+  <script>
+    function closePopup() {
+      const popup = document.getElementById("popup");
+      popup.style.display = "none";
+    }
+  
+    document.addEventListener("DOMContentLoaded", function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("success")) {
+        const popup = document.getElementById("popup");
+        popup.style.display = "block";
+      }
     });
   </script>
 
